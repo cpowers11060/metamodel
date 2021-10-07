@@ -21,5 +21,9 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    install_requires = ['argh']
+    install_requires = ['argh',
+        'psamm >= 1.0',
+        'biopython >= 1.79',
+        'wget >= 3.2',
+        ]
 )

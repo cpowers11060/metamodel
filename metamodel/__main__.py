@@ -39,10 +39,11 @@ import os
 from docopt import docopt
 
 #import metamodel.run_psammotate
-import metamodel.generate_model
+#import metamodel.generate_model
+import generate_model
 import metamodel.generate_proteome
 #import metamodel.visualize_draft_model
-import metamodel.parse_orthology
+import parse_orthology
 
 
 def main():
@@ -95,7 +96,7 @@ def main():
             metamodel.generate_model.create_model_kegg(args['--out'],args['--reaction_table'],
                                               args['--kegg_reference'])
         else:
-            metamodel.generate_model.create_model_api(args['--out'],args['--reaction_table'])
+            generate_model.create_model_api(args['--out'],args['--reaction_table'])
     elif args['<command>'] == 'parse_orthology':
         import commands.parse_orthology_commands
         args = docopt(commands.parse_orthology_commands.__doc__,
@@ -111,7 +112,7 @@ def main():
         if not args['--strategy']:
             args['--strategy']='eggnog'
         if args['--strategy']=='eggnog':
-            metamodel.parse_orthology.parse_eggnog(args['--out'],args['--orthology'],args['--type'])
+            parse_orthology.parse_eggnog(args['--out'],args['--orthology'],args['--type'])
         else:
             raise Exception('Please specify a valid strategy. Try --help if you don\'t know what I\'m talking about')
 

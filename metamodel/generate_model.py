@@ -24,8 +24,8 @@ def dict_constructor(loader, node):
 This function will create a draft model that is essentially
 a subset of an existing model based on the reactions provided
 in the reactions:genes file input. Typically, this existing
-model we use is one based on all of the reactions in kegg, 
-but realistically you could provide this with any yaml 
+model we use is one based on all of the reactions in kegg,
+but realistically you could provide this with any yaml
 formatted model.yaml
 '''
 def create_model_kegg(out, rxn, kegg):
@@ -120,7 +120,7 @@ their current model on.
 '''
 def create_model_api(out, rxn):
     os.mkdir(out)
-    
+
     # Initialize some stuff that store the reaction data
     # Stores the Reaction:Gene associations
     rxn_mapping=defaultdict(list)
@@ -128,7 +128,7 @@ def create_model_api(out, rxn):
         for line in infile:
             line=line.rstrip()
             listall=re.split("\t", line)
-            if len(listall) > 1 and line[0]=="R":
+            if len(listall) > 1 and line[0]!="G":
                 genes=re.split(",", listall[1])
                 rxn_mapping[listall[0]]=genes
 
@@ -173,7 +173,7 @@ def create_model_api(out, rxn):
         f.write("Generic compounds:\n")
         for i in generic_entry_list:
             f.write("{}".format(i.id))
-            if i.name: 
+            if i.name:
                 f.write("|{}".format(i.name))
             else:
                 f.write("|")
@@ -250,7 +250,7 @@ def create_model_api(out, rxn):
 
 '''
 Function to sort the downloaded kegg object into a format
-that is compatible with the psamm api for storage in 
+that is compatible with the psamm api for storage in
 a reactions.yaml file.
 '''
 def model_reactions(reaction_entry_list):
@@ -302,7 +302,7 @@ def model_reactions(reaction_entry_list):
 
 '''
 Function to sort the downloaded	kegg object into a format
-that is	compatible with the psamm api for storage in 
+that is	compatible with the psamm api for storage in
 a compounds.yaml file.
 '''
 def model_compounds(compound_entry_list):

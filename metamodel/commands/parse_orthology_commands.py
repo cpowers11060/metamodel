@@ -7,6 +7,7 @@ Required Arguments:
     orthology   The location of the orthology table
     out         Path to the directory you would like the output files to go (This will be created)
     strategy    Strategy for the generation of the orthology table, such as Eggnog. Default eggnog
+    type        specifies whether you are getting reaction IDs or ECs. options: rxn, ec
 
 'metamodel parse_orthology' takes output from an orthology table and generates a new
 table with gene to reaction relationships.

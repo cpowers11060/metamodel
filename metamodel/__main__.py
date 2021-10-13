@@ -9,7 +9,7 @@ Options:
 
 General Commands:
     generate_proteome   Generates a draft proteome of a putative
-                        organism based on pairwise alignments 
+                        organism based on pairwise alignments
                         between a reference file and the input
                         assembly. Outputs the following:
                         - fasta file of proteome
@@ -20,9 +20,9 @@ General Commands:
                         model collection. (Dependent on running
                         generate_proteome first). Generates the
                         following:
-                        - A reciprocal best hits file between the 
+                        - A reciprocal best hits file between the
                         proteome and the reference model proteome
-                        - A new model that shows the functions 
+                        - A new model that shows the functions
                         represented in the reciprocal best hits
                         file
                         - A visualization of the draft metabolic
@@ -38,13 +38,14 @@ See 'metamodel <command> --help' for more information on a command
 import os
 from docopt import docopt
 
-import metamodel.run_psammotate
+#import metamodel.run_psammotate
 import metamodel.generate_model
 import metamodel.generate_proteome
-import metamodel.visualize_draft_model
+#import metamodel.visualize_draft_model
 import metamodel.parse_orthology
 
-if __name__ == '__main__':
+
+def main():
     args = docopt(__doc__,
                   version='',
                   options_first=True)
@@ -61,7 +62,7 @@ if __name__ == '__main__':
             args['--out']=="./proteome_out"
         if args['--assembly']:
             if not os.path.exists(args['--assembly']):
-                raise Exception('There is no file at this location! Assembly does not exist!')        
+                raise Exception('There is no file at this location! Assembly does not exist!')
         else:
             raise Exception('You didnt specify an assembly, you should do that')
         if args['--NCBI'] is None:
@@ -110,6 +111,10 @@ if __name__ == '__main__':
         if not args['--strategy']:
             args['--strategy']='eggnog'
         if args['--strategy']=='eggnog':
-            metamodel.parse_orthology.parse_eggnog(args['--out'],args['--orthology'])
+            metamodel.parse_orthology.parse_eggnog(args['--out'],args['--orthology'],args['--type'])
         else:
             raise Exception('Please specify a valid strategy. Try --help if you don\'t know what I\'m talking about')
+
+
+if __name__ == '__main__':
+    main()

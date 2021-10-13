@@ -1,7 +1,7 @@
 '''
 Usage:
     metamodel parse_orthology [--help] [options] [--orthology=<PATH>] [--out=<PATH>]
-                                [--strategy=<STR>]
+                                [--strategy=<STR>] [--type=<STR>]
 
 Required Arguments:
     orthology   The location of the orthology table
